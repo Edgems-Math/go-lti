@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/MZDevinc/go-lti/ltiservice"
+	"github.com/Edgems-Math/go-lti/ltiservice"
 )
 
 var ltis ltiservice.LTIService

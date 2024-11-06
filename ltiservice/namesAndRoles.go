@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/MZDevinc/go-lti/lti"
+	"github.com/Edgems-Math/go-lti/lti"
 	"github.com/pkg/errors"
 )
 

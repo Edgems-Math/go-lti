@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/MZDevinc/go-lti/lti"
+	"github.com/Edgems-Math/go-lti/lti"
 	jwtmiddleware "github.com/auth0/go-jwt-middleware"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/pkg/errors"
@@ -15,9 +15,9 @@ import (
 // from the JWT will be stored.
 const userProperty = "user"
 
-//GetLaunchHandler Returns a handler for a LaunchMessage
-//Once the incoming JWT is decoded and validated, the provided callback function will
-//be executed
+// GetLaunchHandler Returns a handler for a LaunchMessage
+// Once the incoming JWT is decoded and validated, the provided callback function will
+// be executed
 func (ltis *LTIService) GetLaunchHandler(callback func(lti.LaunchMessage)) http.Handler {
 	handlerFunc := http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		ltis.launch(w, req, callback)
@@ -87,7 +87,7 @@ func (ltis *LTIService) launch(w http.ResponseWriter, req *http.Request, callbac
 	callback(launchMessage)
 }
 
-//tokenMWErrorHandler provided to the JWT middleware for it to handle errors
+// tokenMWErrorHandler provided to the JWT middleware for it to handle errors
 func tokenMWErrorHandler(w http.ResponseWriter, r *http.Request, err string) {
 	http.Error(w, fmt.Sprintf("Token issue: %s", err), 401)
 }
@@ -233,7 +233,7 @@ func validateMessageTypeDeepLink(claims jwt.MapClaims) error {
 	return nil
 }
 
-//validateMessageTypeCommon checks for claims that should be part of any message type
+// validateMessageTypeCommon checks for claims that should be part of any message type
 func validateMessageTypeCommon(claims jwt.MapClaims) error {
 	if sub, ok := claims["sub"]; !ok || sub.(string) == "" {
 		return fmt.Errorf("token is missing user (sub) claim")

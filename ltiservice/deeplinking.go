@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/MZDevinc/go-lti/lti"
+	"github.com/Edgems-Math/go-lti/lti"
 	"github.com/gin-gonic/gin"
 	"github.com/lestrrat-go/jwx/jws"
 	"github.com/pkg/errors"

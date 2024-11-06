@@ -6,7 +6,7 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/MZDevinc/go-lti/lti"
+	"github.com/Edgems-Math/go-lti/lti"
 	"github.com/pkg/errors"
 )
 
@@ -78,11 +78,11 @@ func (ags *AGService) FindOrCreateLineItem(lineItem lti.LineItem) (lti.LineItem,
 
 	// get all LineItems using pagination because the default call return with 10 rows
 	finished := false
-	pageNum :=1
+	pageNum := 1
 	perPage := 100
-	for finished == false{
+	for finished == false {
 		// append pagination data for the url
-		url := fmt.Sprintf("%s?page=%s&per_page=%s",*ags.LineItemsURL, strconv.Itoa(pageNum), strconv.Itoa(perPage))
+		url := fmt.Sprintf("%s?page=%s&per_page=%s", *ags.LineItemsURL, strconv.Itoa(pageNum), strconv.Itoa(perPage))
 
 		ags.ltis.debug("calling GET on lineitems url: %q", *ags.LineItemsURL)
 		res, err := ags.ltis.DoServiceRequest(ags.Scopes, url, "", "", "", "application/vnd.ims.lis.v2.lineitemcontainer+json")
@@ -101,7 +101,7 @@ func (ags *AGService) FindOrCreateLineItem(lineItem lti.LineItem) (lti.LineItem,
 			if li.Tag == lineItem.Tag {
 				log.Printf("Found lineitem amongst existing, returning: %+v", li)
 				return li, nil
-			} 
+			}
 		}
 		//check is there is next page
 		if len(existingLineitems) < perPage {
@@ -178,14 +178,13 @@ func (ags *AGService) UpdateLineItem(lineItem lti.LineItem) (lti.LineItem, error
 	return result, nil
 }
 
-
 // GET LineItem
 func (ags *AGService) GetLineItem(url string) (lti.LineItem, error) {
 	result := lti.LineItem{}
 
 	ags.ltis.debug("calling GET on lineitem url: %q", url)
 
-	res, err := ags.ltis.DoServiceRequest(ags.Scopes, url , "GET", "", "", "application/vnd.ims.lis.v2.lineitem+json")
+	res, err := ags.ltis.DoServiceRequest(ags.Scopes, url, "GET", "", "", "application/vnd.ims.lis.v2.lineitem+json")
 	if err != nil {
 		return result, errors.Wrap(err, "Failed to GET line item")
 	}
