@@ -1,4 +1,4 @@
-module github.com/MZDevinc/go-lti
+module github.com/Edgems-Math/go-lti
 
 go 1.13
 
