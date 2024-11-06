@@ -1,4 +1,4 @@
-module github.com/Edgems-Math/go-lti
+module github.com/Edgems-Mat/go-lti
 
 go 1.13
 
